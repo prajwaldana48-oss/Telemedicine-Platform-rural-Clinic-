@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TeleHealth — Offline Telemedicine</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#0b74ff" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">TeleHealth</div>
+    <nav class="nav">
+      <button id="btnLogout" class="ghost" style="display:none">Logout</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- AUTH -->
+    <section id="authView" class="card center">
+      <div class="auth-grid">
+        <div class="auth-brand">
+          <h1>TeleHealth</h1>
+          <p class="muted">Offline-ready telemedicine. Register to start.</p>
+        </div>
+
+        <div class="auth-forms">
+          <div class="tabs">
+            <button id="showLogin" class="tab active">Login</button>
+            <button id="showRegister" class="tab">Register</button>
+          </div>
+
+          <form id="loginForm" class="form">
+            <label>Email<input id="loginEmail" type="email" required /></label>
+            <label>Password<input id="loginPassword" type="password" required /></label>
+            <button class="primary">Login</button>
+            <div class="muted small">This is client-only auth for demo. Credentials stored locally (hashed)</div>
+          </form>
+
+          <form id="registerForm" class="form" style="display:none">
+            <label>Full name<input id="regName" required /></label>
+            <label>Email<input id="regEmail" type="email" required /></label>
+            <label>Password<input id="regPassword" type="password" required /></label>
+            <button class="primary">Create account</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- APP -->
+    <section id="appView" class="app" style="display:none">
+      <aside class="sidebar card">
+        <div class="userInfo">
+          <div class="avatar" id="avatar">U</div>
+          <div>
+            <div id="userName" class="strong">User</div>
+            <div id="userEmail" class="muted small">email</div>
+          </div>
+        </div>
+
+        <nav class="sideNav">
+          <button data-view="dashboard" class="sideBtn active">Dashboard</button>
+          <button data-view="search" class="sideBtn">Search Illness</button>
+          <button data-view="profile" class="sideBtn">Profile</button>
+          <button data-view="records" class="sideBtn">Records</button>
+        </nav>
+
+        <div style="margin-top:auto">
+          <button id="btnClearLocal" class="ghost">Clear local data</button>
+          <div class="muted small" style="margin-top:8px">Offline first: data saved locally.</div>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div id="view-dashboard" class="view card activeView">
+          <h2>Dashboard</h2>
+          <p class="muted">Quick access and queued items (all local).</p>
+          <div class="grid-2" style="margin-top:12px">
+            <div class="panel">
+              <h4>Latest notes</h4>
+              <div id="notesList" class="list"></div>
+            </div>
+            <div class="panel">
+              <h4>Queue</h4>
+              <div id="queueList" class="list"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-search" class="view card" style="display:none">
+          <h2>Search illness</h2>
+          <p class="muted">Search illnesses (data from your uploaded PDF). Tip: try "Headache" or "Migraine".</p>
+
+          <div class="searchBox">
+            <input id="searchInput" placeholder="Type illness name..." />
+            <button id="searchBtn" class="primary">Search</button>
+          </div>
+
+          <div id="resultArea" style="margin-top:14px"></div>
+        </div>
+
+        <div id="view-profile" class="view card" style="display:none">
+          <h2>Profile</h2>
+          <form id="profileForm">
+            <label>Name<input id="profileName" /></label>
+            <label>Phone<input id="profilePhone" /></label>
+            <button class="primary">Save profile</button>
+          </form>
+        </div>
+
+        <div id="view-records" class="view card" style="display:none">
+          <h2>Records</h2>
+          <p class="muted">Saved local records: appointments, messages, vitals.</p>
+          <div id="recordsList" class="list" style="margin-top:12px"></div>
+        </div>
+      </main>
+    </section>
+  </main>
+
+  <footer class="foot muted">TeleHealth • Offline demo • Illness tips taken from uploaded PDF (local file). :contentReference[oaicite:1]{index=1}</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
